@@ -1,0 +1,14 @@
+# デフォルト：テキストファイルはLFに正規化
+* text=auto eol=lf
+
+# 画像・バイナリは変換しない
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.pdf  binary
+
+# Windows向けスクリプトだけCRLFを強制
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

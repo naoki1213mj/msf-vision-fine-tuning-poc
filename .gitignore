@@ -1,0 +1,123 @@
+# ====================
+# Python
+# ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ====================
+# 仮想環境
+# ====================
+.venv/
+env/
+venv/
+ENV/
+
+# ====================
+# 環境変数・シークレット
+# ====================
+.env
+!.env.example
+*.keys
+
+# ====================
+# uv パッケージマネージャー
+# ====================
+uv.lock
+
+# ====================
+# Jupyter Notebook
+# ====================
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# ====================
+# IDE / エディタ
+# ====================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ====================
+# OS 生成ファイル
+# ====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ====================
+# テスト / カバレッジ
+# ====================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# ====================
+# ログ・一時ファイル
+# ====================
+*.log
+*.sqlite3
+*.tmp
+*.temp
+*.bak
+
+# ====================
+# プロジェクト固有
+# ====================
+
+# 古いノートブックファイル（アーカイブ）
+archive/
+
+# 評価結果フォルダ（実行結果は各自で生成）
+result/
+
+# データセット（大容量のため各自でダウンロード）
+NEU-DET/
+steel_surface_defects/
+
+# 生成されたJSONLファイル（大容量）
+*.jsonl
+
+# 一時的な画像・データファイル
+*.png
+*.jpg
+*.jpeg
+!picture/*.png
+!picture/*.jpg
+!picture/*.jpeg
