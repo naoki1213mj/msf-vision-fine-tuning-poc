@@ -121,3 +121,6 @@ steel_surface_defects/
 !picture/*.png
 !picture/*.jpg
 !picture/*.jpeg
+!blog/*.png
+!blog/*.jpg
+!blog/*.jpeg
