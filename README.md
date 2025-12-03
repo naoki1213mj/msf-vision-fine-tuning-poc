@@ -1,104 +1,105 @@
 # Azure OpenAI GPT-4.1 Vision Fine-tuning PoC
 
-[🇺🇸 English](README_en.md) | 🇯🇵 日本語
+🇺🇸 English | [🇯🇵 日本語](README_ja.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Azure OpenAI](https://img.shields.io/badge/Azure-OpenAI-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/products/ai-services/openai-service)
 
-Azure OpenAI の GPT-4.1 Vision モデルをファインチューニングし、鋼材表面欠陥の多クラス画像分類を行う PoC（Proof of Concept）プロジェクトです。
+A Proof of Concept (PoC) project that fine-tunes Azure OpenAI's GPT-4.1 Vision model for multi-class image classification of steel surface defects.
 
-## 📊 結果サマリー
+## 📊 Results Summary
 
-| モデル | 分類精度 | 向上率 |
-|--------|----------|--------|
-| GPT-4.1 ベースラインモデル | 53.45% | — |
-| GPT-4.1 Vision ファインチューニングモデル | 96.55% | **+43.10%** |
+| Model | Classification Accuracy | Improvement |
+|-------|-------------------------|-------------|
+| GPT-4.1 Baseline Model | 53.45% | — |
+| GPT-4.1 Vision Fine-tuned Model | 96.55% | **+43.10%** |
 
-> 🎉 Vision ファインチューニングにより、分類精度が約 **43 ポイント向上** しました。
+> 🎉 Vision fine-tuning improved classification accuracy by approximately **43 percentage points**.
 
-## 🎯 ユースケース
+## 🎯 Use Case
 
-熱間圧延鋼板の表面欠陥を自動分類するタスクです。6種類の欠陥クラスを識別します：
+Automated classification of surface defects on hot-rolled steel strips. The model identifies 6 types of defect classes:
 
-| 欠陥クラス | 説明 |
-|------------|------|
-| Crazing (Cr) | クレージング |
-| Inclusion (In) | インクルージョン |
-| Patches (Pa) | パッチ |
-| Pitted Surface (PS) | ピット表面 |
-| Rolled-in Scale (RS) | 圧延スケール |
-| Scratches (Sc) | スクラッチ |
+| Defect Class | Description |
+|--------------|-------------|
+| Crazing (Cr) | Fine crack patterns |
+| Inclusion (In) | Foreign material inclusions |
+| Patches (Pa) | Irregular surface patches |
+| Pitted Surface (PS) | Pitted surface marks |
+| Rolled-in Scale (RS) | Scale rolled into surface |
+| Scratches (Sc) | Surface scratches |
 
-## 📁 プロジェクト構成
+## 📁 Project Structure
 
 ```text
 msf-vision-fine-tuning-poc/
-├── GPT-4.1 Vision Fine-tuning PoC.ipynb  # メインノートブック（GPT-4.1）
-├── archive/                               # 古いノートブック（.gitignore対象）
-├── NEU-DET/                               # データセット（Kaggleからダウンロード）
-│   ├── train/                             # トレーニングデータ
-│   │   ├── annotations/                   # アノテーション（XML）
-│   │   └── images/                        # 画像ファイル
-│   └── validation/                        # 検証データ
+├── GPT-4.1 Vision Fine-tuning PoC.ipynb  # Main notebook (GPT-4.1)
+├── archive/                               # Old notebooks (.gitignore target)
+├── NEU-DET/                               # Dataset (download from Kaggle)
+│   ├── train/                             # Training data
+│   │   ├── annotations/                   # Annotations (XML)
+│   │   └── images/                        # Image files
+│   └── validation/                        # Validation data
 │       ├── annotations/
 │       └── images/
-├── steel_surface_defects/                 # 前処理済みデータ
-│   ├── class1/ ~ class6/                  # クラス別画像
-│   └── jsonl/                             # トレーニング用JSONLファイル
-├── result/                                # 評価結果（.gitignore対象）
-│   ├── confusion_matrix_*.png             # 混同行列画像
-│   ├── evaluation_results_*.csv           # 評価結果CSV
-│   └── evaluation_results_*.xlsx          # 評価結果Excel
-├── pyproject.toml                         # Python プロジェクト設定
-├── uv.lock                                # uvパッケージロックファイル
-├── .env.example                           # 環境変数テンプレート
-├── .gitignore                             # Git除外設定
-├── LICENSE                                # MITライセンス
-└── README.md                              # このファイル
+├── steel_surface_defects/                 # Preprocessed data
+│   ├── class1/ ~ class6/                  # Images by class
+│   └── jsonl/                             # Training JSONL files
+├── result/                                # Evaluation results (.gitignore target)
+│   ├── confusion_matrix_*.png             # Confusion matrix images
+│   ├── evaluation_results_*.csv           # Evaluation results CSV
+│   └── evaluation_results_*.xlsx          # Evaluation results Excel
+├── pyproject.toml                         # Python project configuration
+├── uv.lock                                # uv package lock file
+├── .env.example                           # Environment variables template
+├── .gitignore                             # Git ignore settings
+├── LICENSE                                # MIT License
+├── README.md                              # This file (English README)
+└── README_ja.md                           # Japanese README
 ```
 
-> **注意**: `.gitignore`により、以下は追跡されません
+> **Note**: The following are not tracked due to `.gitignore`:
 >
-> - `.venv/` - 仮想環境
-> - `.env` - 環境変数（認証情報）
-> - `archive/` - 古いノートブックファイル
-> - `result/` - 評価結果ファイル
-> - `NEU-DET/`, `steel_surface_defects/` - データセット（大容量）
-> - `uv.lock` - パッケージロックファイル
-> - `*.ipynb_checkpoints/` - Notebookチェックポイント
+> - `.venv/` - Virtual environment
+> - `.env` - Environment variables (credentials)
+> - `archive/` - Old notebook files
+> - `result/` - Evaluation result files
+> - `NEU-DET/`, `steel_surface_defects/` - Dataset (large files)
+> - `uv.lock` - Package lock file
+> - `*.ipynb_checkpoints/` - Notebook checkpoints
 
-## 🚀 セットアップ
+## 🚀 Setup
 
-### 前提条件
+### Prerequisites
 
-- Python 3.12 以上
-- [uv](https://docs.astral.sh/uv/) パッケージマネージャー
-- Azure サブスクリプション
-- Azure OpenAI リソース（Sweden Central または North Central US リージョン）
+- Python 3.12 or higher
+- [uv](https://docs.astral.sh/uv/) package manager
+- Azure subscription
+- Azure OpenAI resource (Sweden Central or North Central US region)
 
-### 1. リポジトリのクローン
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/naoki1213mj/msf-vision-fine-tuning-poc.git
 cd msf-vision-fine-tuning-poc
 ```
 
-### 2. 依存パッケージのインストール
+### 2. Install Dependencies
 
 ```bash
 uv sync --dev
 ```
 
-### 3. 環境変数の設定
+### 3. Configure Environment Variables
 
-`.env.example` をコピーして `.env` を作成し、Azure の認証情報を設定します。
+Copy `.env.example` to `.env` and set your Azure credentials.
 
 ```bash
 cp .env.example .env
 ```
 
-`.env` ファイルを編集：
+Edit the `.env` file:
 
 ```env
 api_key="your-azure-openai-api-key"
@@ -108,58 +109,58 @@ resource_name="your-openai-resource-name"
 rg_name="your-resource-group-name"
 ```
 
-### 4. データセットの準備
+### 4. Prepare the Dataset
 
-[NEU Surface Defect Database (Kaggle)](https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database) からデータセットをダウンロードし、`NEU-DET/` フォルダに配置します。
+Download the dataset from [NEU Surface Defect Database (Kaggle)](https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database) and place it in the `NEU-DET/` folder.
 
-## 📓 ノートブックの実行
+## 📓 Running the Notebook
 
-Jupyter Notebook または VS Code で `GPT-4.1 Vision Fine-tuning PoC.ipynb` を開いて実行します。
+Open and run `GPT-4.1 Vision Fine-tuning PoC.ipynb` in Jupyter Notebook or VS Code.
 
-### ノートブックの内容
+### Notebook Contents
 
-1. **環境設定**: パッケージのインポートと Azure 認証
-2. **データ準備**: NEU-DET データセットの読み込みと JSONL 形式への変換
-3. **ファイルアップロード**: トレーニング/検証データを Azure OpenAI にアップロード
-4. **ファインチューニング**: GPT-4.1 Vision モデルのファインチューニングジョブ実行
-5. **デプロイメント**: ファインチューニング済みモデルのデプロイ
-6. **評価**: ベースラインモデルとファインチューニングモデルの比較評価
-7. **結論**: 混同行列、分類レポート、誤分類分析
+1. **Environment Setup**: Package imports and Azure authentication
+2. **Data Preparation**: Load NEU-DET dataset and convert to JSONL format
+3. **File Upload**: Upload training/validation data to Azure OpenAI
+4. **Fine-tuning**: Execute GPT-4.1 Vision model fine-tuning job
+5. **Deployment**: Deploy the fine-tuned model
+6. **Evaluation**: Compare baseline and fine-tuned models
+7. **Conclusion**: Confusion matrix, classification report, misclassification analysis
 
-## 🔧 技術スタック
+## 🔧 Tech Stack
 
-| カテゴリ | 技術 |
-|----------|------|
-| 言語 | Python 3.12+ |
-| AI サービス | Azure OpenAI (GPT-4.1 Vision) |
-| パッケージ管理 | uv |
-| データ処理 | pandas, numpy |
-| 可視化 | matplotlib, plotly |
-| ML 評価 | scikit-learn |
+| Category | Technology |
+|----------|------------|
+| Language | Python 3.12+ |
+| AI Service | Azure OpenAI (GPT-4.1 Vision) |
+| Package Manager | uv |
+| Data Processing | pandas, numpy |
+| Visualization | matplotlib, plotly |
+| ML Evaluation | scikit-learn |
 | Azure SDK | azure-identity, azure-mgmt-cognitiveservices |
 
-## 📖 参考資料
+## 📖 References
 
 - [Azure OpenAI Fine-tuning Documentation](https://learn.microsoft.com/azure/ai-services/openai/how-to/fine-tuning)
 - [NEU Surface Defect Database](http://faculty.neu.edu.cn/songkechen/zh_CN/zdylm/263270/list/)
 - [GPT-4.1 Vision Capabilities](https://learn.microsoft.com/azure/ai-services/openai/concepts/models)
 - [Fine-tuning Models - Microsoft Learn](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#fine-tuning-models)
 
-## ⚠️ 注意事項
+## ⚠️ Important Notes
 
-- **リージョン制限**: GPT-4.1 Vision ファインチューニングは Sweden Central または North Central US リージョンでのみ利用可能です（2025年12月時点）
-- **コスト**: ファインチューニングとモデルホスティングには Azure の課金が発生します
-- **自動削除**: 15日間使用されないデプロイメントは自動削除されます
+- **Region Restriction**: GPT-4.1 Vision fine-tuning is only available in Sweden Central or North Central US regions (as of December 2025)
+- **Cost**: Fine-tuning and model hosting incur Azure charges
+- **Auto-deletion**: Deployments not used for 15 days are automatically deleted
 
-> 💡 **ヒント**: リージョンの対応状況やモデルの仕様は随時更新されます。最新情報は [Azure OpenAI ドキュメント](https://learn.microsoft.com/azure/ai-services/openai/concepts/models) をご確認ください。
+> 💡 **Tip**: Region availability and model specifications are updated regularly. Check the [Azure OpenAI documentation](https://learn.microsoft.com/azure/ai-services/openai/concepts/models) for the latest information.
 
-## 🤝 コントリビューション
+## 🤝 Contributing
 
-Issue や Pull Request は歓迎します。大きな変更を加える場合は、まず Issue で議論してください。
+Issues and Pull Requests are welcome. For major changes, please open an issue first to discuss your proposal.
 
-## 📄 ライセンス
+## 📄 License
 
-このプロジェクトは [MIT License](LICENSE) の下で公開されています。
+This project is licensed under the [MIT License](LICENSE).
 
 ## 👤 Author
 
