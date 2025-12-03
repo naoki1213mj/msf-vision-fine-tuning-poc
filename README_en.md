@@ -50,7 +50,6 @@ msf-vision-fine-tuning-poc/
 │   ├── confusion_matrix_*.png             # Confusion matrix images
 │   ├── evaluation_results_*.csv           # Evaluation results CSV
 │   └── evaluation_results_*.xlsx          # Evaluation results Excel
-├── picture/                               # Documentation images
 ├── pyproject.toml                         # Python project configuration
 ├── uv.lock                                # uv package lock file
 ├── .env.example                           # Environment variables template

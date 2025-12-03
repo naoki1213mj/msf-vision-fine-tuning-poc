@@ -121,9 +121,9 @@ steel_surface_defects/
 *.png
 *.jpg
 *.jpeg
-!picture/*.png
-!picture/*.jpg
-!picture/*.jpeg
 !blog/*.png
 !blog/*.jpg
 !blog/*.jpeg
+
+# pictureフォルダ（READMEで未使用のため除外）
+picture/

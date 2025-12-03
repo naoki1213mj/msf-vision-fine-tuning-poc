@@ -50,7 +50,6 @@ msf-vision-fine-tuning-poc/
 │   ├── confusion_matrix_*.png             # 混同行列画像
 │   ├── evaluation_results_*.csv           # 評価結果CSV
 │   └── evaluation_results_*.xlsx          # 評価結果Excel
-├── picture/                               # ドキュメント用画像
 ├── pyproject.toml                         # Python プロジェクト設定
 ├── uv.lock                                # uvパッケージロックファイル
 ├── .env.example                           # 環境変数テンプレート
