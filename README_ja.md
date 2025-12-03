@@ -1,12 +1,12 @@
-# Azure OpenAI GPT-4.1 Vision Fine-tuning PoC
+# Microsoft Foundry GPT-4.1 Vision Fine-tuning PoC
 
 [🇺🇸 English](README.md) | 🇯🇵 日本語
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Azure OpenAI](https://img.shields.io/badge/Azure-OpenAI-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/products/ai-services/openai-service)
+[![Microsoft Foundry](https://img.shields.io/badge/Microsoft-Foundry-0078D4?logo=microsoft)](https://ai.azure.com/)
 
-Azure OpenAI の GPT-4.1 Vision モデルをファインチューニングし、鋼材表面欠陥の多クラス画像分類を行う PoC（Proof of Concept）プロジェクトです。
+Microsoft Foundry の GPT-4.1 Vision モデルをファインチューニングし、鋼材表面欠陥の多クラス画像分類を行う PoC（Proof of Concept）プロジェクトです。
 
 ## 📊 結果サマリー
 
@@ -76,7 +76,7 @@ msf-vision-fine-tuning-poc/
 - Python 3.12 以上
 - [uv](https://docs.astral.sh/uv/) パッケージマネージャー
 - Azure サブスクリプション
-- Azure OpenAI リソース（Sweden Central または North Central US リージョン）
+- Microsoft Foundry プロジェクト（Sweden Central または North Central US リージョン）
 
 ### 1. リポジトリのクローン
 
@@ -102,10 +102,10 @@ cp .env.example .env
 `.env` ファイルを編集：
 
 ```env
-api_key="your-azure-openai-api-key"
+api_key="your-api-key"
 azure_endpoint="https://your-resource.openai.azure.com/"
 subscription_id="your-subscription-id"
-resource_name="your-openai-resource-name"
+resource_name="your-foundry-resource-name"
 rg_name="your-resource-group-name"
 ```
 
@@ -121,7 +121,7 @@ Jupyter Notebook または VS Code で `GPT-4.1 Vision Fine-tuning PoC.ipynb` �
 
 1. **環境設定**: パッケージのインポートと Azure 認証
 2. **データ準備**: NEU-DET データセットの読み込みと JSONL 形式への変換
-3. **ファイルアップロード**: トレーニング/検証データを Azure OpenAI にアップロード
+3. **ファイルアップロード**: トレーニング/検証データを Microsoft Foundry にアップロード
 4. **ファインチューニング**: GPT-4.1 Vision モデルのファインチューニングジョブ実行
 5. **デプロイメント**: ファインチューニング済みモデルのデプロイ
 6. **評価**: ベースラインモデルとファインチューニングモデルの比較評価
@@ -132,7 +132,7 @@ Jupyter Notebook または VS Code で `GPT-4.1 Vision Fine-tuning PoC.ipynb` �
 | カテゴリ | 技術 |
 |----------|------|
 | 言語 | Python 3.12+ |
-| AI サービス | Azure OpenAI (GPT-4.1 Vision) |
+| AI サービス | Microsoft Foundry (GPT-4.1 Vision) |
 | パッケージ管理 | uv |
 | データ処理 | pandas, numpy |
 | 可視化 | matplotlib, plotly |
@@ -141,18 +141,20 @@ Jupyter Notebook または VS Code で `GPT-4.1 Vision Fine-tuning PoC.ipynb` �
 
 ## 📖 参考資料
 
+- [Microsoft Foundry ポータル](https://ai.azure.com/)
 - [Azure OpenAI Fine-tuning Documentation](https://learn.microsoft.com/azure/ai-services/openai/how-to/fine-tuning)
+- [Vision Fine-tuning Guide](https://learn.microsoft.com/azure/ai-services/openai/how-to/fine-tuning-vision)
 - [NEU Surface Defect Database](http://faculty.neu.edu.cn/songkechen/zh_CN/zdylm/263270/list/)
-- [GPT-4.1 Vision Capabilities](https://learn.microsoft.com/azure/ai-services/openai/concepts/models)
 - [Fine-tuning Models - Microsoft Learn](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#fine-tuning-models)
 
 ## ⚠️ 注意事項
 
+- **名称変更**: Azure AI Foundry は 2025年11月の Microsoft Ignite で **Microsoft Foundry** に名称変更されました
 - **リージョン制限**: GPT-4.1 Vision ファインチューニングは Sweden Central または North Central US リージョンでのみ利用可能です（2025年12月時点）
 - **コスト**: ファインチューニングとモデルホスティングには Azure の課金が発生します
 - **自動削除**: 15日間使用されないデプロイメントは自動削除されます
 
-> 💡 **ヒント**: リージョンの対応状況やモデルの仕様は随時更新されます。最新情報は [Azure OpenAI ドキュメント](https://learn.microsoft.com/azure/ai-services/openai/concepts/models) をご確認ください。
+> 💡 **ヒント**: リージョンの対応状況やモデルの仕様は随時更新されます。最新情報は [Microsoft Foundry ドキュメント](https://learn.microsoft.com/azure/ai-services/openai/concepts/models) をご確認ください。
 
 ## 🤝 コントリビューション
 

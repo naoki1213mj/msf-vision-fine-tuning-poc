@@ -1,12 +1,12 @@
-# Azure OpenAI GPT-4.1 Vision Fine-tuning PoC
+# Microsoft Foundry GPT-4.1 Vision Fine-tuning PoC
 
 🇺🇸 English | [🇯🇵 日本語](README_ja.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Azure OpenAI](https://img.shields.io/badge/Azure-OpenAI-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/products/ai-services/openai-service)
+[![Microsoft Foundry](https://img.shields.io/badge/Microsoft-Foundry-0078D4?logo=microsoft)](https://ai.azure.com/)
 
-A Proof of Concept (PoC) project that fine-tunes Azure OpenAI's GPT-4.1 Vision model for multi-class image classification of steel surface defects.
+A Proof of Concept (PoC) project that fine-tunes GPT-4.1 Vision model on Microsoft Foundry for multi-class image classification of steel surface defects.
 
 ## 📊 Results Summary
 
@@ -76,7 +76,7 @@ msf-vision-fine-tuning-poc/
 - Python 3.12 or higher
 - [uv](https://docs.astral.sh/uv/) package manager
 - Azure subscription
-- Azure OpenAI resource (Sweden Central or North Central US region)
+- Microsoft Foundry project (Sweden Central or North Central US region)
 
 ### 1. Clone the Repository
 
@@ -102,10 +102,10 @@ cp .env.example .env
 Edit the `.env` file:
 
 ```env
-api_key="your-azure-openai-api-key"
+api_key="your-api-key"
 azure_endpoint="https://your-resource.openai.azure.com/"
 subscription_id="your-subscription-id"
-resource_name="your-openai-resource-name"
+resource_name="your-foundry-resource-name"
 rg_name="your-resource-group-name"
 ```
 
@@ -121,7 +121,7 @@ Open and run `GPT-4.1 Vision Fine-tuning PoC.ipynb` in Jupyter Notebook or VS Co
 
 1. **Environment Setup**: Package imports and Azure authentication
 2. **Data Preparation**: Load NEU-DET dataset and convert to JSONL format
-3. **File Upload**: Upload training/validation data to Azure OpenAI
+3. **File Upload**: Upload training/validation data to Microsoft Foundry
 4. **Fine-tuning**: Execute GPT-4.1 Vision model fine-tuning job
 5. **Deployment**: Deploy the fine-tuned model
 6. **Evaluation**: Compare baseline and fine-tuned models
@@ -132,7 +132,7 @@ Open and run `GPT-4.1 Vision Fine-tuning PoC.ipynb` in Jupyter Notebook or VS Co
 | Category | Technology |
 |----------|------------|
 | Language | Python 3.12+ |
-| AI Service | Azure OpenAI (GPT-4.1 Vision) |
+| AI Service | Microsoft Foundry (GPT-4.1 Vision) |
 | Package Manager | uv |
 | Data Processing | pandas, numpy |
 | Visualization | matplotlib, plotly |
@@ -141,18 +141,20 @@ Open and run `GPT-4.1 Vision Fine-tuning PoC.ipynb` in Jupyter Notebook or VS Co
 
 ## 📖 References
 
+- [Microsoft Foundry Portal](https://ai.azure.com/)
 - [Azure OpenAI Fine-tuning Documentation](https://learn.microsoft.com/azure/ai-services/openai/how-to/fine-tuning)
+- [Vision Fine-tuning Guide](https://learn.microsoft.com/azure/ai-services/openai/how-to/fine-tuning-vision)
 - [NEU Surface Defect Database](http://faculty.neu.edu.cn/songkechen/zh_CN/zdylm/263270/list/)
-- [GPT-4.1 Vision Capabilities](https://learn.microsoft.com/azure/ai-services/openai/concepts/models)
 - [Fine-tuning Models - Microsoft Learn](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#fine-tuning-models)
 
 ## ⚠️ Important Notes
 
+- **Rebranding**: Azure AI Foundry was renamed to **Microsoft Foundry** at Microsoft Ignite in November 2025
 - **Region Restriction**: GPT-4.1 Vision fine-tuning is only available in Sweden Central or North Central US regions (as of December 2025)
 - **Cost**: Fine-tuning and model hosting incur Azure charges
 - **Auto-deletion**: Deployments not used for 15 days are automatically deleted
 
-> 💡 **Tip**: Region availability and model specifications are updated regularly. Check the [Azure OpenAI documentation](https://learn.microsoft.com/azure/ai-services/openai/concepts/models) for the latest information.
+> 💡 **Tip**: Region availability and model specifications are updated regularly. Check the [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-services/openai/concepts/models) for the latest information.
 
 ## 🤝 Contributing
 
